@@ -48,7 +48,7 @@ A corredo del codice sorgente, di seguito sono riportati i diagrammi UML richies
 ### Class Diagram di Dettaglio
 Modello strutturale completo di tutti i moduli realizzati (Tesi e Tirocini), comprensivo dell'integrazione del layer Persistence (DAO).
 
-![Class Diagram di Dettaglio](Class Diagram di Dettaglio.png)
+![Class Diagram di Dettaglio](Class_Diagram_Dettaglio.png)
 
 ---
 
