@@ -1,6 +1,6 @@
 package model;
 
-public class UTENTE {
+ public class Utente {
     private String username;
     private String password;
     private String nome;
