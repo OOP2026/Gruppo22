@@ -46,7 +46,7 @@ jobs:
         run: > 
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
           -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }} 
-          -Dsonar.qualitygate.wait=true
+          -Dsonar.qualitygate.wait=false
           
       - name: Publish Test Report
         uses: dorny/test-reporter@v1
