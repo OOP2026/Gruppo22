@@ -1,4 +1,4 @@
-package implementazionepostgresdao;
+package implementazioneDao;
 
 import dao.UtenteDAO;
 import database.DBConnection;
@@ -37,11 +37,7 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
 
                 } else if (ruolo.equalsIgnoreCase("Docente")) {
                     String codiceDocente = resultSet.getString("codice_docente");
-
-                    // --- LA MODIFICA È QUI ---
-                    // Ora istanziamo la classe concreta DOCENTE passandole tutti i parametri,
-                    // esattamente come hai fatto per lo Studente e il Coordinatore.
-                    utenteLoggato = new UTENTE(username, password, nome, cognome, codiceDocente);
+                    utenteLoggato = new DOCENTE(username, password, nome, cognome, codiceDocente);
 
                 } else if (ruolo.equalsIgnoreCase("Coordinatore")) {
                     String idCoordinatore = resultSet.getString("id_coordinatore");
