@@ -1,38 +1,39 @@
-package gui; // Cambia in "boundary" se la tua cartella si chiama così
+package gui;
 
 import Controller.Controller;
 import model.STUDENTE;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
+/**
+ * LoginGUI - finestra di login.
+ * Costruttore richiede un'istanza di controller.Controller.
+ */
 public class LoginGUI extends JFrame {
 
-    private Controller controller;
+    private final Controller controller;
 
     // Componenti grafici
     private JTextField txtUsername;
-    private JPasswordField txtPassword; // JPasswordField nasconde i caratteri digitati
+    private JPasswordField txtPassword;
     private JButton btnLogin;
 
-    public LoginGUI(Controller controller) {
-        this.controller = controller;
+    public LoginGUI(Controller Controller) {
+        super("Sistema Universitario - Login");
+        this.controller = Controller;
+        initComponents();
+    }
 
-        // 1. Impostazioni base della finestra
-        setTitle("Sistema Universitario - Login");
+    private void initComponents() {
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(350, 200);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null); // Centra la finestra sullo schermo
+        setLocationRelativeTo(null);
         setResizable(false);
 
-        // 2. Creazione del pannello principale con GridLayout (3 righe, 2 colonne)
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new GridLayout(3, 2, 10, 10)); // 10px di spazio tra gli elementi
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Margini interni
+        JPanel mainPanel = new JPanel(new GridLayout(3, 2, 10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
 
-        // 3. Creazione e aggiunta dei componenti al pannello
         JLabel lblUsername = new JLabel("Username (Matricola):");
         txtUsername = new JTextField();
 
@@ -41,29 +42,21 @@ public class LoginGUI extends JFrame {
 
         btnLogin = new JButton("Accedi");
 
-        // Aggiungiamo i componenti nell'ordine corretto per la griglia
         mainPanel.add(lblUsername);
         mainPanel.add(txtUsername);
         mainPanel.add(lblPassword);
         mainPanel.add(txtPassword);
-        mainPanel.add(new JLabel("")); // Cella vuota per allineare il bottone a destra
+        mainPanel.add(new JLabel()); // cella vuota per allineare il bottone
         mainPanel.add(btnLogin);
 
-        // Aggiungiamo il pannello alla finestra
         add(mainPanel, BorderLayout.CENTER);
 
-        // 4. Gestione dell'evento: cosa succede quando clicco "Accedi"
-        btnLogin.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                effettuaLogin();
-            }
-        });
+        // Premi Invio per attivare il login
+        getRootPane().setDefaultButton(btnLogin);
+
+        btnLogin.addActionListener(e -> effettuaLogin());
     }
 
-    /**
-     * Metodo che estrae i dati e chiama il controller
-     */
     private void effettuaLogin() {
         String username = txtUsername.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
@@ -71,33 +64,39 @@ public class LoginGUI extends JFrame {
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Inserisci username e password!",
-                    "Errore di compilazione",
+                    "Errore",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        // --- LA MODIFICA È QUI ---
-        // Invece di chiedere un boolean, chiediamo l'oggetto STUDENTE
-        model.STUDENTE studenteLoggato = controller.loginStudente(username, password);
+        // Chiamo il controller per ottenere l'oggetto STUDENTE (null = credenziali non valide)
+        STUDENTE studenteLoggato = controller.loginStudente(username, password);
 
-        // Se l'oggetto non è null, il login è andato a buon fine!
         if (studenteLoggato != null) {
             JOptionPane.showMessageDialog(this, "Login effettuato con successo!");
-
             this.dispose();
 
-            // --- LA MODIFICA È QUI ---
-            // Sostituiamo DashboardStudenteGUI con la nuova DashboardCompletaGUI
-            // Passiamo solo il controller, come definito nel costruttore della nuova classe
-            DashboardCompletaGUI dashboard = new DashboardCompletaGUI(controller);
-            dashboard.setVisible(true);
+            // Apro la dashboard: qui passo controller e studente (adatta se la tua DashboardCompletaGUI ha un costruttore diverso)
+            SwingUtilities.invokeLater(() -> {
+                DashboardCompletaGUI dashboard = new DashboardCompletaGUI(controller, studenteLoggato);
+                dashboard.setVisible(true);
+            });
 
         } else {
-            // Se lo studente è null, le credenziali erano errate
             JOptionPane.showMessageDialog(this,
                     "Credenziali errate. Riprova.",
                     "Errore di Accesso",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    /**
+     * Helper per mostrare la GUI in modo sicuro (EDT).
+     */
+    public static void showLogin(Controller controller) {
+        SwingUtilities.invokeLater(() -> {
+            LoginGUI frame = new LoginGUI(controller);
+            frame.setVisible(true);
+        });
     }
 }
