@@ -86,7 +86,6 @@ public class Controller {
      * Genera un account base usando l'ID come username.
      */
     public boolean registraNuovoDocente(String idDocente, String nome, String cognome) {
-        // Parametri: username, password, nome, cognome, codiceDocente
         Docente nuovoDocente = new Docente(idDocente, "defaultPass", nome, cognome, idDocente);
         return docenteDAO.inserisciDocente(nuovoDocente);
     }
@@ -154,7 +153,6 @@ public class Controller {
     // ========================================================================
 
     public List<TIROCINIO> getTuttiTirocini() {
-        // Restituisce una lista vuota istanziata per evitare NullPointerException nelle tabelle GUI
         return new ArrayList<>();
     }
 
