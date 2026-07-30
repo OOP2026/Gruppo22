@@ -41,6 +41,7 @@ public class TESI {
     }
 
     public String setDescrizione(String descrizione) {
+
         return "Descrizione";
     }
 
@@ -53,5 +54,13 @@ public class TESI {
 
     public void setTipologia(String tipologia) {
         this.tipologia = tipologia;
+    }
+
+    public String getDescrizione() {
+        return "descrizione";
+    }
+
+    public String getCodiceDocente() {
+        return "codiceDocente";
     }
 }
