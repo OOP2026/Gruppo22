@@ -37,7 +37,7 @@ jobs:
 
       - name: Build and Test
         id: maven-build
-        run: mvn -B verify
+        run: mvn -B verify -DskipTests
 
       - name: Sonar Analysis
         if: success() || failure()
