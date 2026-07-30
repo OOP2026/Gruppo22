@@ -1,46 +1,34 @@
 package model;
 
-public class UTENTE {
+public class Utente {
     private String username;
     private String password;
     private String nome;
     private String cognome;
 
-    /**
-     * Costruttore base dell'entità Utente.
-     */
-    public UTENTE() {
-        this.username = this.username;
-        this.password = this.password;
-        this.nome = this.nome;
-        this.cognome = this.cognome;
+    // Costruttore di default
+    public Utente() {
+        // lascia i campi a null per il costruttore vuoto
     }
 
-    public UTENTE(String username, String password, String nome, String cognome, String codiceDocente) {
-    }
-
-    // --- METODI GETTER ---
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setNome(String nome) {
+    // Costruttore parametrico base (per Studente/Docente/Coordinatore)
+    public Utente(String username, String password, String nome, String cognome) {
+        this.username = username;
+        this.password = password;
         this.nome = nome;
-    }
-
-    public void setCognome(String cognome) {
         this.cognome = cognome;
     }
+
+    // Getter e setter
+    public String getUsername() { return username; }
+    public void setUsername(String username) { this.username = username; }
+
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
+
+    public String getCognome() { return cognome; }
+    public void setCognome(String cognome) { this.cognome = cognome; }
 }

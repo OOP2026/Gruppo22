@@ -1,17 +1,17 @@
 package model;
 import java.time.LocalDate;
 
-public class RICHIESTATIROCINIO {
+public class RichiestaTirocinio {
     private String argomentoScelto;
     private LocalDate dataRichiesta;
     private StatoWorkflow stato;
 
-    public RICHIESTATIROCINIO() {
+    public RichiestaTirocinio() {
         this.stato =StatoWorkflow.IN_ATTESA;
         this.dataRichiesta = LocalDate.now();
     }
 
-    public RICHIESTATIROCINIO(String argomentoScelto) {
+    public RichiestaTirocinio(String argomentoScelto) {
         this();
         this.argomentoScelto = argomentoScelto;
     }

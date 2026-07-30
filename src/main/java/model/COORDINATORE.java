@@ -1,6 +1,6 @@
 package model;
 
-public class COORDINATORE extends UTENTE {
+public class Coordinatore extends Utente {
     private String idCoordinatore;
     private String username;
     private String password;
@@ -16,7 +16,7 @@ public class COORDINATORE extends UTENTE {
      * @param cognome
      * @param idCoordinatore
      */
-    public COORDINATORE(String username, String password, String nome, String cognome, String idCoordinatore) {
+    public Coordinatore(String username, String password, String nome, String cognome, String idCoordinatore) {
         super();
     }
 

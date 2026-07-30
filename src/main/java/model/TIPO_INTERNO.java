@@ -1,17 +1,17 @@
 package model;
 
-public class TIPO_INTERNO extends TIROCINIO {
+public class Tipo_Interno extends Tirocinio {
 
     private String laboratorio;
 
-    public TIPO_INTERNO() {
+    public Tipo_Interno() {
         // Chiama il costruttore vuoto di TIROCINIO
         super();
     }
 
     // 2. Costruttore con parametri
     // Chiede tutti i dati e passa al padre (TIROCINIO) quelli che gli competono
-    public TIPO_INTERNO(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte, String laboratorio) {
+    public Tipo_Interno(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte, String laboratorio) {
         // Chiama il costruttore del padre passandogli le 4 variabili base
         super(idTirocinio, titoloArgomento, tipologia, aziendaEnte);
 

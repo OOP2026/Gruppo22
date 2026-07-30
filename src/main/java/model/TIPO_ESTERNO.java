@@ -1,11 +1,11 @@
 package model;
 
 // Implementazione Esterno[cite: 5]
-public class TIPO_ESTERNO extends TIROCINIO {
+public class Tipo_Esterno extends Tirocinio {
     public static final String titoloArgomento = "";
     private String referenteAziendale;
-    public TIPO_ESTERNO() { super(); }
-    public TIPO_ESTERNO(String titoloArgomento, String referenteAziendale) {
+    public Tipo_Esterno() { super(); }
+    public Tipo_Esterno(String titoloArgomento, String referenteAziendale) {
         super();
         this.referenteAziendale = referenteAziendale;
     }

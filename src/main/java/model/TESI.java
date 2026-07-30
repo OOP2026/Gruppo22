@@ -1,6 +1,6 @@
 package model;
 
-public class TESI {
+public class Tesi {
 
     private int idTesi;
     private String titolo;
@@ -12,7 +12,7 @@ public class TESI {
     private String codiceDocente;
 
     // Costruttore vuoto
-    public TESI() {}
+    public Tesi() {}
 
     // --- Getter e Setter ---
 

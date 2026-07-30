@@ -5,7 +5,7 @@ package model;
  * Mantiene le proprietà comuni tra tirocini interni ed esterni
  * per facilitare la visualizzazione nella Dashboard.
  */
-public class TIROCINIO {
+public class Tirocinio {
 
     // Attributi base identificati nel tuo progetto
     private int idTirocinio;
@@ -16,11 +16,11 @@ public class TIROCINIO {
     private String aziendaEnte; // Contiene il laboratorio (interno) o l'azienda (esterno)
 
     // Costruttore vuoto (fondamentale per il DAO quando istanzia l'oggetto riga per riga)
-    public TIROCINIO() {
+    public Tirocinio() {
     }
 
     // Costruttore completo
-    public TIROCINIO(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte) {
+    public Tirocinio(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte) {
         this.idTirocinio = idTirocinio;
         this.titoloArgomento = titoloArgomento;
         this.tipologia = tipologia;
