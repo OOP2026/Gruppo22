@@ -10,11 +10,11 @@ import dao.DocenteDAO;
 import dao.SedutaDAO;
 
 // Importazioni delle Implementazioni Postgres
-import implementazionepostgresdao.RichiestaTirocinioDAOPostgresImpl;
-import implementazionepostgresdao.TesiDAOPostgresImpl;
-import implementazionepostgresdao.StudenteDAOPostgresImpl;
-import implementazionepostgresdao.DocenteDAOPostgresImpl;
-import implementazionepostgresdao.SedutaDAOPostgresImpl;
+import implementazionedao.RichiestaTirocinioDAOPostgresImpl;
+import implementazionedao.TesiDAOPostgresImpl;
+import implementazionedao.StudenteDAOPostgresImpl;
+import implementazionedao.DocenteDAOPostgresImpl;
+import implementazionedao.SedutaDAOPostgresImpl;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -55,7 +55,7 @@ public class Controller {
         return false;
     }
 
-    public STUDENTE loginStudente(String username, String password) {
+    public Studente loginStudente(String username, String password) {
         return studenteDAO.verificaLogin(username, password);
     }
 
@@ -63,7 +63,7 @@ public class Controller {
     // METODI DI RICERCA ENTITÀ
     // ========================================================================
 
-    public STUDENTE cercaStudente(String matricola) {
+    public Studente cercaStudente(String matricola) {
         System.out.println("CONTROLLER: Sto cercando la matricola [" + matricola + "]");
         return studenteDAO.findByMatricola(matricola);
     }
@@ -77,7 +77,7 @@ public class Controller {
     // ========================================================================
 
     public boolean registraNuovoStudente(String username, String password, String nome, String cognome, String matricola, String corsoStudi) {
-        STUDENTE nuovoStudente = new STUDENTE(username, password, nome, cognome, matricola, corsoStudi);
+        Studente nuovoStudente = new Studente(username, password, nome, cognome, matricola, corsoStudi);
         return studenteDAO.inserisciStudente(nuovoStudente);
     }
 
@@ -95,12 +95,12 @@ public class Controller {
         return docenteDAO.inserisciDocente(coordinatore);
     }
 
-    public void registraTesi(TESI tesi) {
+    public void registraTesi(Tesi tesi) {
         tesiDAO.save(tesi);
     }
 
     public boolean registraTesi(String titolo, String descrizione, String codiceDocente) {
-        TESI nuovaTesi = new TESI();
+        Tesi nuovaTesi = new Tesi();
         nuovaTesi.setTitolo(titolo);
         nuovaTesi.setDescrizione(descrizione);
         nuovaTesi.setCodiceDocente(codiceDocente);
@@ -110,7 +110,7 @@ public class Controller {
     }
 
     public boolean registraNuovaTesi(String titolo, String descrizione, String codiceDocente, String tipologia) {
-        TESI nuovaTesi = new TESI();
+        Tesi nuovaTesi = new Tesi();
         nuovaTesi.setTitolo(titolo);
         nuovaTesi.setDescrizione(descrizione);
         nuovaTesi.setCodiceDocente(codiceDocente);
@@ -121,7 +121,7 @@ public class Controller {
     }
 
     public boolean registraNuovaSeduta(String data, String ora, String aula) {
-        model.SEDUTA_DI_LAURA nuovaSeduta = new model.SEDUTA_DI_LAURA();
+        model.SedutaDiLaurea nuovaSeduta = new model.SedutaDiLaurea();
 
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -139,7 +139,7 @@ public class Controller {
         return sedutaDAO.inserisciSeduta(nuovaSeduta);
     }
 
-    public void inserisciRichiesta(RICHIESTATIROCINIO richiesta) {
+    public void inserisciRichiesta(RichiestaTirocinio richiesta) {
         richiestaTirocinioDAO.save(richiesta);
     }
 
@@ -152,11 +152,11 @@ public class Controller {
     // METODI DI RECUPERO LISTE PER TABELLE SWING
     // ========================================================================
 
-    public List<TIROCINIO> getTuttiTirocini() {
+    public List<Tirocinio> getTuttiTirocini() {
         return new ArrayList<>();
     }
 
-    public List<TIROCINIO> ottieniListaTirocini() {
+    public List<Tirocinio> ottieniListaTirocini() {
         return getTuttiTirocini();
     }
 
