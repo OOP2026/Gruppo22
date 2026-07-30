@@ -2,11 +2,11 @@ package implementazionepostgresdao;
 
 import dao.StudenteDAO;
 import database.DBConnection;
-import model.STUDENTE;
+import model.Studente;
 import java.sql.*;
 
 public class StudenteDAOPostgresImpl implements StudenteDAO {
-    public STUDENTE verificaLogin(String matricola, String password) {
+    public Studente verificaLogin(String matricola, String password) {
 
         String query = "SELECT * FROM studente WHERE matricola = ? AND password = ?";
         try (Connection conn = DBConnection.getInstance().getConnection();
@@ -18,7 +18,7 @@ public class StudenteDAOPostgresImpl implements StudenteDAO {
             ResultSet rs = pstmt.executeQuery();
 
             if (rs.next()) {
-                STUDENTE s = new STUDENTE();
+                Studente s = new Studente();
                 s.setMatricola(rs.getString("matricola"));
                 s.setNome(rs.getString("nome"));
                 s.setCognome(rs.getString("cognome"));
@@ -29,7 +29,7 @@ public class StudenteDAOPostgresImpl implements StudenteDAO {
     }
 
     @Override
-    public boolean inserisciStudente(STUDENTE studente) {
+    public boolean inserisciStudente(Studente studente) {
         // 1. Query SQL allineata allo schema fisico del database (solo 3 attributi)
         String query = "INSERT INTO studente (matricola, nome, cognome) VALUES (?, ?, ?)";
 
@@ -58,7 +58,7 @@ public class StudenteDAOPostgresImpl implements StudenteDAO {
     }
 
     @Override
-    public STUDENTE findByMatricola(String matricola) {
+    public Studente findByMatricola(String matricola) {
         return null;
     }
 }
