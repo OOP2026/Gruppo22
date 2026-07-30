@@ -15,10 +15,12 @@ on:
       - 'pom.xml'
       - '.github/workflows/pipeline.yaml'
   workflow_dispatch:
+
 permissions:
   contents: read
   actions: read
   checks: write
+
 jobs:
   build:
     name: Quality Analysis
@@ -35,12 +37,12 @@ jobs:
           distribution: 'zulu'
           cache: 'maven'
 
-      - name: Build and Test (Bypass)
+      - name: Build and Test
         id: maven-build
-        run: mvn -B verify -DskipTests
+        run: mvn -B verify
 
       - name: Sonar Analysis
-        if: success() || failure()
+        if: always()
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: > 
