@@ -1,6 +1,9 @@
 package gui;
 
 import Controller.Controller;
+
+import model.STUDENTE;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +13,7 @@ public class DashboardCompletaGUI extends JFrame {
 
     private Controller controller;
 
-    public DashboardCompletaGUI(Controller controller) {
+    public DashboardCompletaGUI(Controller controller, model.STUDENTE studente) {
         this.controller = controller;
 
         // 1. Configurazione Finestra Principale (JFrame)
