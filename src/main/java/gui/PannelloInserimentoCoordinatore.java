@@ -1,17 +1,20 @@
 package gui;
 
+
 import Controller.Controller;
+
+
 import javax.swing.*;
 import java.awt.*;
 
 public class PannelloInserimentoCoordinatore extends JPanel {
 
-    private Controller controller;
+    private Controller Controller;
     private JTextField txtUsername, txtPassword, txtNome, txtCognome, txtIdCoordinatore;
     private JButton btnSalva;
 
     public PannelloInserimentoCoordinatore(Controller controller) {
-        this.controller = controller;
+        this.Controller = controller;
 
         setLayout(new GridLayout(6, 2, 10, 10));
         setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));

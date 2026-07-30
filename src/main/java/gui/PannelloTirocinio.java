@@ -2,6 +2,7 @@ package gui;
 
 import javax.swing.*;
 import java.awt.*;
+
 import Controller.Controller;
 
 public class PannelloTirocinio extends JPanel {
