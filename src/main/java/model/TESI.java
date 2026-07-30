@@ -5,7 +5,9 @@ public class TESI {
     private String fileContact;
     private StatoWorkflow stato;
     private String tipologia;
-
+    private String Descrizione;
+    private String CodiceDocente;
+    
     public TESI() {}
 
     // --- Getter e Setter ---
