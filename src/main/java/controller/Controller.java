@@ -1,4 +1,4 @@
-package Controller;
+package controller;
 
 import model.*;
 
@@ -22,7 +22,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Controller {
+public class controller {
 
     // Dichiarazione delle dipendenze (I DAO)
     private RichiestaTirocinioDAO richiestaTirocinioDAO;
@@ -35,7 +35,7 @@ public class Controller {
      * Costruttore del Controller.
      * Inizializza le implementazioni concrete per l'accesso al database PostgreSQL.
      */
-    public Controller() {
+    public controller() {
         this.richiestaTirocinioDAO = new RichiestaTirocinioDAOPostgresImpl();
         this.tesiDAO = new TesiDAOPostgresImpl();
         this.studenteDAO = new StudenteDAOPostgresImpl();
