@@ -1,16 +1,28 @@
 package model;
 
 public class TESI {
+
+    private int idTesi;
     private String titolo;
+    private String argomento;
     private String fileContact;
     private StatoWorkflow stato;
     private String tipologia;
-    private String Descrizione;
-    private String CodiceDocente;
-    
+    private String descrizione;
+    private String codiceDocente;
+
+    // Costruttore vuoto
     public TESI() {}
 
     // --- Getter e Setter ---
+
+    public int getIdTesi() {
+        return idTesi;
+    }
+
+    public void setIdTesi(int idTesi) {
+        this.idTesi = idTesi;
+    }
 
     public String getTitolo() {
         return titolo;
@@ -18,6 +30,14 @@ public class TESI {
 
     public void setTitolo(String titolo) {
         this.titolo = titolo;
+    }
+
+    public String getArgomento() {
+        return argomento;
+    }
+
+    public void setArgomento(String argomento) {
+        this.argomento = argomento;
     }
 
     public String getFileContact() {
@@ -36,20 +56,6 @@ public class TESI {
         this.stato = stato;
     }
 
-    public void setIdTesi(int id) {
-    }
-
-    public void setArgomento(String argomento) {
-    }
-
-    public String setDescrizione(String descrizione) {
-
-        return "Descrizione";
-    }
-
-    public String setCodiceDocente(String codiceDocente) {
-        return "CodiceDocente";
-    }
     public String getTipologia() {
         return tipologia;
     }
@@ -59,10 +65,18 @@ public class TESI {
     }
 
     public String getDescrizione() {
-        return "descrizione";
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     public String getCodiceDocente() {
-        return "codiceDocente";
+        return codiceDocente;
+    }
+
+    public void setCodiceDocente(String codiceDocente) {
+        this.codiceDocente = codiceDocente;
     }
 }
