@@ -49,3 +49,4 @@ jobs:
           mvn -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar 
           -Dsonar.projectKey=${{ github.repository_owner }}_${{ github.event.repository.name }} 
           -Dsonar.qualitygate.wait=false
+          -Dsonar.java.test.binaries=target/test-classes
