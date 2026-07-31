@@ -1,4 +1,4 @@
-package database;
+package database; // Assicurati di aver rinominato la cartella in "database"
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -19,7 +19,9 @@ public class DBConnection {
     // Le credenziali vengono lette dinamicamente dalle variabili d'ambiente del sistema.
     // In questo modo, nessuna password è visibile nel codice sorgente caricato su GitHub.
     private static final String USER = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "postgres";
-    private static final String PASSWORD = System.getenv("DB_PASSWORD=postgres");
+
+    // CORREZIONE: Si passa solo il nome della variabile ("DB_PASSWORD")
+    private static final String PASSWORD = System.getenv("DB_PASSWORD");
 
     /**
      * Costruttore privato del Singleton.
@@ -32,7 +34,7 @@ public class DBConnection {
 
             // Se la variabile d'ambiente non è impostata, lancia un avviso di sicurezza
             if (PASSWORD == null) {
-                System.err.println("[AVVISO DI SICUREZZA]: La variabile d'ambiente DB_PASSWORD non è configurata!");
+                System.err.println("[AVVISO DI SICUREZZA]: La variabile d'ambiente DB_PASSWORD non è configurata nel sistema!");
             }
 
             // Stabilisce la connessione (se PASSWORD è null, PostgreSQL fallirà il login bloccando l'accesso)
