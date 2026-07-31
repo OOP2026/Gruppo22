@@ -14,10 +14,12 @@ public class DBConnection {
     private static DBConnection instance;
     private Connection connection;
 
-    // TODO: Modificare questi parametri con le credenziali del proprio database locale
     private static final String URL = "jdbc:postgresql://localhost:5432/gestione_tesi";
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+
+    // Le credenziali vengono lette dinamicamente dalle variabili d'ambiente del sistema.
+    // In questo modo, nessuna password è visibile nel codice sorgente caricato su GitHub.
+    private static final String USER = System.getenv("DB_USER") != null ? System.getenv("DB_USER") : "postgres";
+    private static final String PASSWORD = System.getenv("DB_PASSWORD=postgres");
 
     /**
      * Costruttore privato del Singleton.
@@ -27,8 +29,16 @@ public class DBConnection {
         try {
             // Registrazione del Driver PostgreSQL
             Class.forName("org.postgresql.Driver");
+
+            // Se la variabile d'ambiente non è impostata, lancia un avviso di sicurezza
+            if (PASSWORD == null) {
+                System.err.println("[AVVISO DI SICUREZZA]: La variabile d'ambiente DB_PASSWORD non è configurata!");
+            }
+
+            // Stabilisce la connessione (se PASSWORD è null, PostgreSQL fallirà il login bloccando l'accesso)
             this.connection = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connessione al database stabilita con successo.");
+
         } catch (ClassNotFoundException e) {
             System.err.println("Errore: Driver JDBC PostgreSQL non trovato nell'infrastruttura.");
             e.printStackTrace();
