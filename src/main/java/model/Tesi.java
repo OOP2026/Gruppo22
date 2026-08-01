@@ -12,7 +12,10 @@ public class Tesi {
     private String codiceDocente;
 
     // Costruttore vuoto
-    public Tesi() {}
+    public Tesi() {
+        // Costruttore intenzionalmente vuoto.
+        // L'oggetto viene popolato successivamente tramite i metodi Setter (es. nei DAO).
+    }
 
     // --- Getter e Setter ---
 
