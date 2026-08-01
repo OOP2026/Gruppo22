@@ -3,8 +3,7 @@ package model;
 // Implementazione Esterno
 public class TipoEsterno extends Tirocinio {
 
-    // --- LA MODIFICA È QUI ---
-    // Le costanti (static final) in Java devono essere scritte rigorosamente tutte in MAIUSCOLO
+    // La costante di classe resta correttamente in SCREAMING_SNAKE_CASE
     public static final String TITOLO_ARGOMENTO = "";
 
     private String referenteAziendale;
@@ -13,7 +12,9 @@ public class TipoEsterno extends Tirocinio {
         super();
     }
 
-    public TipoEsterno(String TITOLO_ARGOMENTO, String referenteAziendale) {
+    // --- LA MODIFICA È QUI ---
+    // Il parametro del costruttore torna in camelCase (titoloArgomento)
+    public TipoEsterno(String titoloArgomento, String referenteAziendale) {
         super();
         this.referenteAziendale = referenteAziendale;
     }
