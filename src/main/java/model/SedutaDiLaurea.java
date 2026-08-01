@@ -6,8 +6,6 @@ import java.time.LocalTime;
 public class SedutaDiLaurea {
 
     private LocalDate data;
-
-    // Rinominate le variabili rimuovendo l'underscore (camelCase)
     private LocalTime oraInizio;
     private LocalTime oraFine;
     private String ora;
@@ -27,12 +25,10 @@ public class SedutaDiLaurea {
         return data;
     }
 
-    // Rinominato in getOraInizio
     public LocalTime getOraInizio() {
         return oraInizio;
     }
 
-    // Rinominato in getOraFine
     public LocalTime getOraFine() {
         return oraFine;
     }
@@ -45,12 +41,10 @@ public class SedutaDiLaurea {
         this.data = data;
     }
 
-    // Rinominato in setOraInizio
     public void setOraInizio(LocalTime oraInizio) {
         this.oraInizio = oraInizio;
     }
 
-    // Rinominato in setOraFine
     public void setOraFine(LocalTime oraFine) {
         this.oraFine = oraFine;
     }
@@ -59,7 +53,10 @@ public class SedutaDiLaurea {
         this.luogo = luogo;
     }
 
+    // --- LA MODIFICA È QUI ---
+    // Completata l'implementazione del metodo Setter
     public void setOra(String ora) {
+        this.ora = ora;
     }
 
     public LocalTime getOra() {
