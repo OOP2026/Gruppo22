@@ -44,8 +44,9 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
                         utenteLoggato = new Studente(username, password, nome, cognome, matricola, corsoStudi);
 
                     } else if (ruolo.equalsIgnoreCase("Docente")) {
-                        String codiceDocente = resultSet.getString("codice_docente");
-                        // se hai classe Docente la usi, altrimenti usa Utente con un campo in più
+                        // --- LA MODIFICA È QUI ---
+                        // Rimossa la variabile inutilizzata (Dead Code).
+                        // Verrà istanziato un Utente base senza bisogno del codice_docente.
                         utenteLoggato = new Utente(username, password, nome, cognome);
 
                     } else if (ruolo.equalsIgnoreCase("Coordinatore")) {
@@ -56,7 +57,7 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
             }
 
         } catch (SQLException e) {
-            // Sostituzione del System.err con il Logger standard
+            // Utilizzo del Logger standard
             LOGGER.log(Level.SEVERE, "Errore di connessione o esecuzione query per il login", e);
         }
 
