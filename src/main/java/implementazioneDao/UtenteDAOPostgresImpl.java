@@ -10,8 +10,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class UtenteDAOPostgresImpl implements UtenteDAO {
+
+    // Inizializzazione del Logger di classe
+    private static final Logger LOGGER = Logger.getLogger(UtenteDAOPostgresImpl.class.getName());
 
     @Override
     public Utente verificaLogin(String username, String password) {
@@ -51,7 +56,8 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
             }
 
         } catch (SQLException e) {
-            System.err.println("Errore di connessione o esecuzione query: " + e.getMessage());
+            // Sostituzione del System.err con il Logger standard
+            LOGGER.log(Level.SEVERE, "Errore di connessione o esecuzione query per il login", e);
         }
 
         return utenteLoggato;
