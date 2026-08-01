@@ -1,39 +1,35 @@
 package model;
 
 public class Coordinatore extends Utente {
-    private String idCoordinatore;
-    private String username;
-    private String password;
-    private String nome;
-    private String cognome;
 
-    /**
-     * Costruttore base dell'entità Utente.
-     *
-     * @param username
-     * @param password
-     * @param nome
-     * @param cognome
-     * @param idCoordinatore
-     */
-    public Coordinatore(String username, String password, String nome, String cognome, String idCoordinatore) {
-        super();
-    }
+    // Manteniamo SOLO l'attributo specifico del Coordinatore.
+    // username, password, nome e cognome sono ereditati automaticamente da Utente.
+    private String idCoordinatore;
 
     /**
      * Costruttore dell'entità Coordinatore.
+     *
+     * @param username       Lo username per il login
+     * @param password       La password per il login
+     * @param nome           Il nome del coordinatore
+     * @param cognome        Il cognome del coordinatore
+     * @param idCoordinatore L'identificativo specifico del ruolo
      */
-    public void Coordinatore(String username, String password, String nome, String cognome, String idCoordinatore) {
-        // Invocazione del costruttore della superclasse;
-        this.username = username;
-        this.password = password;
-        this.nome = nome;
-        this.cognome = cognome;
+    public Coordinatore(String username, String password, String nome, String cognome, String idCoordinatore) {
+        // 1. Invocazione del costruttore della superclasse (Utente) per i dati anagrafici
+        super(username, password, nome, cognome);
+
+        // 2. Assegnazione del dato specifico della classe figlia
         this.idCoordinatore = idCoordinatore;
     }
 
-    // --- METODI GETTER ---
+    // --- METODI GETTER e SETTER ---
+
     public String getIdCoordinatore() {
         return idCoordinatore;
+    }
+
+    public void setIdCoordinatore(String idCoordinatore) {
+        this.idCoordinatore = idCoordinatore;
     }
 }
