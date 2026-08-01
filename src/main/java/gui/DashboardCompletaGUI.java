@@ -1,6 +1,5 @@
 package gui;
 
-
 import controller.Controller;
 import model.Studente;
 
@@ -11,7 +10,8 @@ import java.awt.event.ActionListener;
 
 public class DashboardCompletaGUI extends JFrame {
 
-    private Controller controller;
+   
+    private transient Controller controller;
 
     public DashboardCompletaGUI(Controller controller, Studente studenteLoggato) {
         this.controller = controller;
@@ -19,9 +19,6 @@ public class DashboardCompletaGUI extends JFrame {
         // 1. Configurazione Finestra Principale (JFrame)
         setTitle("Pannello di Controllo Generale - Sistema Tesi");
         setSize(800, 600); // Finestra capiente per la griglia
-
-        // --- LA MODIFICA È QUI ---
-        // Utilizzo dell'accesso statico corretto tramite l'interfaccia WindowConstants
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         setLocationRelativeTo(null); // Centra lo schermo all'avvio
