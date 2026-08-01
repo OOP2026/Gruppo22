@@ -1,5 +1,7 @@
 package model;
+
 import java.time.LocalDate;
+import java.time.ZoneId; // 1. Aggiungi questo import
 
 public class RichiestaTirocinio {
     private String argomentoScelto;
@@ -7,8 +9,11 @@ public class RichiestaTirocinio {
     private StatoWorkflow stato;
 
     public RichiestaTirocinio() {
-        this.stato =StatoWorkflow.IN_ATTESA;
-        this.dataRichiesta = LocalDate.now();
+        this.stato = StatoWorkflow.IN_ATTESA;
+
+        // 2. LA MODIFICA È QUI: Dichiariamo esplicitamente il fuso orario
+        // In alternativa, puoi usare ZoneId.systemDefault() per forzare la lettura dal sistema locale
+        this.dataRichiesta = LocalDate.now(ZoneId.of("Europe/Rome"));
     }
 
     public RichiestaTirocinio(String argomentoScelto) {
@@ -16,19 +21,19 @@ public class RichiestaTirocinio {
         this.argomentoScelto = argomentoScelto;
     }
 
-    // Operations[cite: 9]
-    public void accetta() { this.stato =StatoWorkflow.APPROVATA; }
-    public void rifiuta() { this.stato =StatoWorkflow.RIFIUTATA; }
+    public void accetta() {
+        this.stato = StatoWorkflow.APPROVATA;
+    }
 
-    // Getter/Setter omessi per brevità[cite: 9]
-
-    // Aggiungi questi metodi in RICHIESTATIROCINIO.java
+    public void rifiuta() {
+        this.stato = StatoWorkflow.RIFIUTATA;
+    }
 
     public String getArgomentoScelto() {
         return argomentoScelto;
     }
 
-    public java.time.LocalDate getDataRichiesta() {
+    public LocalDate getDataRichiesta() {
         return dataRichiesta;
     }
 
