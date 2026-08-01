@@ -7,11 +7,17 @@ import model.SedutaDiLaurea;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+// Importazioni necessarie per il logging
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Implementazione Postgres del DAO per SedutaDiLaurea.
  */
 public class SedutaDAOPostgresImpl implements SedutaDAO {
+
+    // 1. Inizializzazione del Logger
+    private static final Logger LOGGER = Logger.getLogger(SedutaDAOPostgresImpl.class.getName());
 
     @Override
     public List<SedutaDiLaurea> findAll() {
@@ -44,8 +50,8 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
                 lista.add(s);
             }
         } catch (SQLException e) {
-            // Loggare eccezione in modo appropriato nel progetto (qui printStackTrace per debugging)
-            e.printStackTrace();
+            // 2. Sostituzione di printStackTrace con il Logger
+            LOGGER.log(Level.SEVERE, "Errore durante il recupero delle sedute di laurea", e);
         }
         return lista;
     }
@@ -103,8 +109,8 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
             return rows > 0;
 
         } catch (SQLException e) {
-            // Loggare in modo appropriato; qui ritorniamo false per indicare fallimento
-            e.printStackTrace();
+            // 2. Sostituzione di printStackTrace con il Logger
+            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento della seduta di laurea", e);
             return false;
         }
     }
