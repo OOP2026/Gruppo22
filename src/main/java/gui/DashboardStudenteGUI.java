@@ -14,13 +14,19 @@ public class DashboardStudenteGUI extends JFrame {
     private Controller controller;
     private String matricolaStudente;
 
-    public DashboardStudenteGUI(Controller Controller, String matricolaStudente) {
-        this.controller = Controller;
+    // --- LA MODIFICA È QUI ---
+    // Il parametro è stato rinominato in 'controller' (tutto minuscolo)
+    public DashboardStudenteGUI(Controller controller, String matricolaStudente) {
+
+        this.controller = controller;
         this.matricolaStudente = matricolaStudente;
 
         setTitle("Dashboard Studente - Sistema Tesi");
         setSize(400, 300);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // Correzione preventiva per SonarQube (uso di WindowConstants anziché JFrame)
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         setLayout(new java.awt.FlowLayout());
 
         // Esempio di un bottone per una tesi specifica (da rendere dinamico in futuro)
