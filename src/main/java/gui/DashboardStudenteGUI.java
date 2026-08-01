@@ -1,6 +1,6 @@
 package gui;
 
-import Controller.Controller;
+import controller.Controller;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,8 +14,8 @@ public class DashboardStudenteGUI extends JFrame {
     private Controller controller;
     private String matricolaStudente;
 
-    public DashboardStudenteGUI(Controller controller, String matricolaStudente) {
-        this.controller = controller;
+    public DashboardStudenteGUI(Controller Controller, String matricolaStudente) {
+        this.controller = Controller;
         this.matricolaStudente = matricolaStudente;
 
         setTitle("Dashboard Studente - Sistema Tesi");
