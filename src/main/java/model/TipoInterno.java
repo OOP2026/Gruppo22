@@ -1,17 +1,19 @@
 package model;
 
-public class Tipo_Interno extends Tirocinio {
+// --- LA MODIFICA È QUI ---
+// Rimozione dell'underscore per rispettare il PascalCase standard di Java
+public class TipoInterno extends Tirocinio {
 
     private String laboratorio;
 
-    public Tipo_Interno() {
+    // Anche il costruttore deve avere lo stesso identico nome della classe
+    public TipoInterno() {
         // Chiama il costruttore vuoto di TIROCINIO
         super();
     }
 
-    // 2. Costruttore con parametri
-    // Chiede tutti i dati e passa al padre (TIROCINIO) quelli che gli competono
-    public Tipo_Interno(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte, String laboratorio) {
+    // Costruttore con parametri
+    public TipoInterno(int idTirocinio, String titoloArgomento, String tipologia, String aziendaEnte, String laboratorio) {
         // Chiama il costruttore del padre passandogli le 4 variabili base
         super(idTirocinio, titoloArgomento, tipologia, aziendaEnte);
 

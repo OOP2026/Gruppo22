@@ -1,7 +1,7 @@
 package model;
 
 // Implementazione Esterno
-public class Tipo_Esterno extends Tirocinio {
+public class TipoEsterno extends Tirocinio {
 
     // --- LA MODIFICA È QUI ---
     // Le costanti (static final) in Java devono essere scritte rigorosamente tutte in MAIUSCOLO
@@ -9,11 +9,11 @@ public class Tipo_Esterno extends Tirocinio {
 
     private String referenteAziendale;
 
-    public Tipo_Esterno() {
+    public TipoEsterno() {
         super();
     }
 
-    public Tipo_Esterno(String TITOLO_ARGOMENTO, String referenteAziendale) {
+    public TipoEsterno(String TITOLO_ARGOMENTO, String referenteAziendale) {
         super();
         this.referenteAziendale = referenteAziendale;
     }
