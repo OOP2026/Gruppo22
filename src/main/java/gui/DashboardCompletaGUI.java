@@ -1,6 +1,7 @@
 package gui;
 
-import Controller.Controller;
+
+import controller.Controller;
 import model.Studente;
 
 import javax.swing.*;
@@ -18,7 +19,11 @@ public class DashboardCompletaGUI extends JFrame {
         // 1. Configurazione Finestra Principale (JFrame)
         setTitle("Pannello di Controllo Generale - Sistema Tesi");
         setSize(800, 600); // Finestra capiente per la griglia
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // --- LA MODIFICA È QUI ---
+        // Utilizzo dell'accesso statico corretto tramite l'interfaccia WindowConstants
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
         setLocationRelativeTo(null); // Centra lo schermo all'avvio
         setLayout(new BorderLayout());
 
@@ -98,8 +103,7 @@ public class DashboardCompletaGUI extends JFrame {
             }
         });
 
-        // Collego il listener temporaneo ai bottoni non ancora pronti
-
+        // Interazione STUDENTE
         btnStudente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -113,46 +117,58 @@ public class DashboardCompletaGUI extends JFrame {
             }
         });
 
+        // Interazione COORDINATORE
         btnCoordinatore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Coordinatore", true);
                 dialog.setSize(450, 450);
                 dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+
                 dialog.add(new PannelloInserimentoCoordinatore(controller));
+
                 dialog.setVisible(true);
             }
         });
 
+        // Interazione TIROCINIO
         btnTirocinio.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tirocinio", true);
                 dialog.setSize(450, 450);
                 dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+
                 dialog.add(new PannelloTirocinio(controller));
+
                 dialog.setVisible(true);
             }
         });
 
+        // Interazione SEDUTA LAUREA
         btnSedutaLaurea.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Seduta di Laurea", true);
                 dialog.setSize(450, 450);
                 dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+
                 dialog.add(new PannelloInserimentoSedutaLaurea(controller));
+
                 dialog.setVisible(true);
             }
         });
 
+        // Interazione TIPO
         btnTipo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tipo", true);
                 dialog.setSize(450, 450);
                 dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+
                 dialog.add(new PannelloInserimentoTipo(controller));
+
                 dialog.setVisible(true);
             }
         });
@@ -162,7 +178,6 @@ public class DashboardCompletaGUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose(); // Distrugge la dashboard attuale
-                // Qui reinvocherai la schermata di login iniziale, es: new LoginGUI(controller).setVisible(true);
             }
         });
     }
