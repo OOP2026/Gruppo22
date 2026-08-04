@@ -16,7 +16,10 @@ public class DocenteDAOPostgresImpl implements DocenteDAO {
     @Override
     public Docente findByCodice(String idDocente) {
         // La query SQL parametrizzata previene attacchi di SQL Injection.
-        String query = "SELECT * FROM docente WHERE id_docente = ?";
+
+        // --- LA MODIFICA È QUI ---
+        // Sostituito SELECT * con la proiezione esplicita delle colonne necessarie
+        String query = "SELECT id_docente, nome, cognome FROM docente WHERE id_docente = ?";
 
         // Costrutto try-with-resources per il rilascio automatico delle risorse JDBC
         try (Connection conn = DBConnection.getInstance().getConnection();
