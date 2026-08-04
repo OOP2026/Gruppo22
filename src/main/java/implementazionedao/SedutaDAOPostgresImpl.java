@@ -7,7 +7,6 @@ import model.SedutaDiLaurea;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-// Importazioni necessarie per il logging
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,7 +22,6 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
     public List<SedutaDiLaurea> findAll() {
         List<SedutaDiLaurea> lista = new ArrayList<>();
 
-        // --- LA MODIFICA È QUI ---
         // Sostituito SELECT * con i campi espliciti richiesti dall'estrazione
         String query = "SELECT data, ora_inizio, ora_fine, luogo FROM seduta_di_laurea";
 
@@ -53,7 +51,6 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
                 lista.add(s);
             }
         } catch (SQLException e) {
-            // 2. Sostituzione di printStackTrace con il Logger
             LOGGER.log(Level.SEVERE, "Errore durante il recupero delle sedute di laurea", e);
         }
         return lista;
@@ -61,13 +58,15 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
 
     /**
      * Salva la seduta; delega all'implementazione che restituisce boolean.
-     * Se l'inserimento fallisce viene lanciata RuntimeException per segnalare l'errore al chiamante.
+     * Se l'inserimento fallisce viene lanciata un'eccezione specifica per segnalare l'errore.
      */
     @Override
     public void save(SedutaDiLaurea seduta) {
         boolean ok = inserisciSeduta(seduta);
         if (!ok) {
-            throw new RuntimeException("Errore durante l'inserimento della seduta di laurea");
+            // --- LA MODIFICA È QUI ---
+            // Sostituita la generica RuntimeException con la più specifica IllegalStateException
+            throw new IllegalStateException("Errore durante l'inserimento della seduta di laurea: operazione di persistenza fallita.");
         }
     }
 
@@ -113,7 +112,6 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
             return rows > 0;
 
         } catch (SQLException e) {
-            // 2. Sostituzione di printStackTrace con il Logger
             LOGGER.log(Level.SEVERE, "Errore durante l'inserimento della seduta di laurea", e);
             return false;
         }
