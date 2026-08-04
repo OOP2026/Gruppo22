@@ -5,7 +5,6 @@ import database.DBConnection;
 import model.RichiestaTirocinio;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,9 +19,11 @@ public class RichiestaTirocinioDAOPostgresImpl implements RichiestaTirocinioDAO 
 
     @Override
     public void save(RichiestaTirocinio r) {
+
         String query = "INSERT INTO richiesta_tirocinio (argomento_scelto, data_richiesta, stato) VALUES (?, ?, ?)";
 
         DBConnection dbInstance = DBConnection.getInstance();
+
         if (dbInstance == null) {
             LOGGER.log(Level.SEVERE, "Impossibile ottenere l'istanza del database.");
             return;
@@ -32,7 +33,11 @@ public class RichiestaTirocinioDAOPostgresImpl implements RichiestaTirocinioDAO 
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
             pstmt.setString(1, r.getArgomentoScelto());
-            pstmt.setDate(2, Date.valueOf(r.getDataRichiesta()));
+
+            // --- LA MODIFICA È QUI ---
+            // Rimosso java.sql.Date. Utilizzo diretto dell'API java.time nativa tramite setObject()
+            pstmt.setObject(2, r.getDataRichiesta());
+
             pstmt.setString(3, r.getStato().toString());
 
             pstmt.executeUpdate();
