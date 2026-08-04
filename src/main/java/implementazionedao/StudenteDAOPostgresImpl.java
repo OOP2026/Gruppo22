@@ -15,7 +15,9 @@ public class StudenteDAOPostgresImpl implements StudenteDAO {
 
     public Studente verificaLogin(String matricola, String password) {
 
-        String query = "SELECT * FROM studente WHERE matricola = ? AND password = ?";
+        // --- LA MODIFICA È QUI ---
+        // Sostituito SELECT * con la proiezione esplicita delle sole colonne necessarie
+        String query = "SELECT matricola, nome, cognome FROM studente WHERE matricola = ? AND password = ?";
 
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
