@@ -1,46 +1,30 @@
 package model;
 
-public class Docente {
+// Sfruttiamo l'ereditarietà: Docente è un Utente
+public class Docente extends Utente {
+
+    // Manteniamo SOLO il campo specifico di questa classe.
+    // nome, cognome, username e password sono ereditati in automatico.
     private String idDocente;
-    private String nome;
-    private String cognome;
-    private String username;
-    private String password;
 
     // Costruttore vuoto
-    public Docente() {}
+    public Docente() {
+        super();
+    }
 
     // Costruttore a 5 parametri richiesto dal Controller
     public Docente(String username, String password, String nome, String cognome, String idDocente) {
-        this.username = username;
-        this.password = password;
-        this.nome = nome;
-        this.cognome = cognome;
+        // Passiamo i dati anagrafici e le credenziali alla superclasse
+        super(username, password, nome, cognome);
         this.idDocente = idDocente;
     }
 
-    // Getter e Setter
+    // Getter e Setter per l'unico campo specifico
     public String getIdDocente() {
         return idDocente;
     }
 
     public void setIdDocente(String idDocente) {
         this.idDocente = idDocente;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCognome() {
-        return cognome;
-    }
-
-    public void setCognome(String cognome) {
-        this.cognome = cognome;
     }
 }
