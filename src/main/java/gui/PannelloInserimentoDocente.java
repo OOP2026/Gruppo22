@@ -1,21 +1,22 @@
 package gui;
 
-
 import controller.Controller;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class PannelloInserimentoDocente extends JPanel {
 
-    private Controller Controller;
+    // --- LA MODIFICA È QUI ---
+    // Aggiunta la keyword 'transient' per escludere il Controller dalla serializzazione
+    // e rinominata la variabile in minuscolo ('controller') per rispettare il Clean Code.
+    private transient Controller controller;
 
     // Dichiarazione dei soli 3 campi previsti dal database
     private JTextField txtIdDocente, txtNome, txtCognome;
     private JButton btnSalva;
 
-    public PannelloInserimentoDocente(Controller Controller) {
-        this.Controller = Controller;
+    public PannelloInserimentoDocente(Controller controller) {
+        this.controller = controller;
 
         // Impostazione di un layout a griglia (4 righe, 2 colonne)
         setLayout(new GridLayout(4, 2, 10, 10));
@@ -58,7 +59,7 @@ public class PannelloInserimentoDocente extends JPanel {
             }
 
             // Inoltro della richiesta al Controller (Passiamo ESATTAMENTE 3 parametri)
-            boolean successo = Controller.registraNuovoDocente(idDocente, nome, cognome);
+            boolean successo = this.controller.registraNuovoDocente(idDocente, nome, cognome);
 
             // Gestione del feedback visivo
             if (successo) {
