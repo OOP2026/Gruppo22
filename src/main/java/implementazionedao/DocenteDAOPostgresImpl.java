@@ -17,7 +17,6 @@ public class DocenteDAOPostgresImpl implements DocenteDAO {
     public Docente findByCodice(String idDocente) {
         // La query SQL parametrizzata previene attacchi di SQL Injection.
 
-        // --- LA MODIFICA È QUI ---
         // Sostituito SELECT * con la proiezione esplicita delle colonne necessarie
         String query = "SELECT id_docente, nome, cognome FROM docente WHERE id_docente = ?";
 
@@ -39,8 +38,10 @@ public class DocenteDAOPostgresImpl implements DocenteDAO {
                 }
             }
         } catch (SQLException e) {
-            // 2. SOSTITUZIONE: Utilizzo del Logger al posto di e.printStackTrace()
-            LOGGER.log(Level.SEVERE, "Eccezione durante la ricerca del docente con ID: " + idDocente, e);
+            // --- LA MODIFICA È QUI ---
+            // Utilizzo di una Lambda expression (Supplier) per differire la concatenazione della stringa.
+            // Nota l'inversione dei parametri: (Level, Throwable, Supplier<String>)
+            LOGGER.log(Level.SEVERE, e, () -> "Eccezione durante la ricerca del docente con ID: " + idDocente);
         }
 
         return null; // Ritorna null se non c'è corrispondenza nel database
@@ -72,7 +73,7 @@ public class DocenteDAOPostgresImpl implements DocenteDAO {
             return righeInserite > 0; // Restituisce true se l'operazione ha avuto successo
 
         } catch (SQLException e) {
-            // 2. SOSTITUZIONE: Utilizzo del Logger al posto di e.printStackTrace()
+            // Qui non usiamo la lambda perché non c'è concatenazione di variabili nella stringa
             LOGGER.log(Level.SEVERE, "Eccezione durante l'inserimento del docente", e);
             return false;
         }
