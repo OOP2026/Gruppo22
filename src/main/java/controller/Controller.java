@@ -1,21 +1,16 @@
 package controller;
 
 import model.*;
-
-// Importazioni delle Interfacce DAO
 import dao.RichiestaTirocinioDAO;
 import dao.TesiDAO;
 import dao.StudenteDAO;
 import dao.DocenteDAO;
 import dao.SedutaDAO;
-
-// Importazioni delle Implementazioni Postgres
 import implementazionedao.RichiestaTirocinioDAOPostgresImpl;
 import implementazionedao.TesiDAOPostgresImpl;
 import implementazionedao.StudenteDAOPostgresImpl;
 import implementazionedao.DocenteDAOPostgresImpl;
 import implementazionedao.SedutaDAOPostgresImpl;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
