@@ -22,7 +22,10 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
     @Override
     public List<SedutaDiLaurea> findAll() {
         List<SedutaDiLaurea> lista = new ArrayList<>();
-        String query = "SELECT * FROM seduta_di_laurea";
+
+        // --- LA MODIFICA È QUI ---
+        // Sostituito SELECT * con i campi espliciti richiesti dall'estrazione
+        String query = "SELECT data, ora_inizio, ora_fine, luogo FROM seduta_di_laurea";
 
         try (Connection conn = DBConnection.getInstance().getConnection();
              Statement stmt = conn.createStatement();
@@ -74,6 +77,7 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
     @Override
     public boolean inserisciSeduta(SedutaDiLaurea seduta) {
         String query = "INSERT INTO seduta_di_laurea (data, ora_inizio, ora_fine, luogo) VALUES (?, ?, ?, ?)";
+
         try (Connection conn = DBConnection.getInstance().getConnection();
              PreparedStatement pstmt = conn.prepareStatement(query)) {
 
