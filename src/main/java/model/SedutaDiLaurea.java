@@ -8,7 +8,9 @@ public class SedutaDiLaurea {
     private LocalDate data;
     private LocalTime oraInizio;
     private LocalTime oraFine;
-    private String ora;
+
+    // Rimosso l'attributo inutilizzato 'private String ora;'
+
     private String luogo;
     private String aula;
 
@@ -53,15 +55,7 @@ public class SedutaDiLaurea {
         this.luogo = luogo;
     }
 
-    // --- LA MODIFICA È QUI ---
-    // Completata l'implementazione del metodo Setter
-    public void setOra(String ora) {
-        this.ora = ora;
-    }
-
-    public LocalTime getOra() {
-        return oraInizio;
-    }
+    // Rimossi i metodi inutili e incoerenti setOra() e getOra()
 
     public void setAula(String aula) {
         this.aula = aula;
