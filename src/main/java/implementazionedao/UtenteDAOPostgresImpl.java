@@ -22,7 +22,10 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
     public Utente verificaLogin(String username, String password) {
 
         Utente utenteLoggato = null;
-        String query = "SELECT * FROM Utenti WHERE username = ? AND password = ?";
+
+        // --- LA MODIFICA È QUI ---
+        // Sostituito SELECT * con le colonne esplicitamente necessarie per ottimizzare la query
+        String query = "SELECT nome, cognome, ruolo, matricola, corso_studi, id_coordinatore FROM Utenti WHERE username = ? AND password = ?";
 
         Connection connection = DBConnection.getInstance().getConnection();
 
@@ -44,8 +47,6 @@ public class UtenteDAOPostgresImpl implements UtenteDAO {
                         utenteLoggato = new Studente(username, password, nome, cognome, matricola, corsoStudi);
 
                     } else if (ruolo.equalsIgnoreCase("Docente")) {
-                        // --- LA MODIFICA È QUI ---
-                        // Rimossa la variabile inutilizzata (Dead Code).
                         // Verrà istanziato un Utente base senza bisogno del codice_docente.
                         utenteLoggato = new Utente(username, password, nome, cognome);
 
