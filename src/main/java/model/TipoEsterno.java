@@ -13,8 +13,8 @@ public class TipoEsterno extends Tirocinio {
     }
 
     // --- LA MODIFICA È QUI ---
-    // Il parametro del costruttore torna in camelCase (titoloArgomento)
-    public TipoEsterno(String titoloArgomento, String referenteAziendale) {
+    // Rimosso il parametro "titoloArgomento" inutilizzato (Dead Code)
+    public TipoEsterno(String referenteAziendale) {
         super();
         this.referenteAziendale = referenteAziendale;
     }
