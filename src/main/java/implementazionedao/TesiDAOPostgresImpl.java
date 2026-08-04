@@ -7,13 +7,21 @@ import model.Tesi;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class TesiDAOPostgresImpl implements TesiDAO {
+
+    // Inizializzazione del Logger di classe per gestire le eccezioni
+    private static final Logger LOGGER = Logger.getLogger(TesiDAOPostgresImpl.class.getName());
 
     @Override
     public List<Tesi> findAll() {
         List<Tesi> lista = new ArrayList<>();
-        String query = "SELECT * FROM tesi";
+
+        // --- LA MODIFICA È QUI ---
+        // Sostituito SELECT * con la singola colonna necessaria per ottimizzare l'estrazione
+        String query = "SELECT titolo FROM tesi";
 
         try (Connection conn = DBConnection.getInstance().getConnection();
              Statement stmt = conn.createStatement();
@@ -22,11 +30,12 @@ public class TesiDAOPostgresImpl implements TesiDAO {
             while (rs.next()) {
                 Tesi t = new Tesi();
                 t.setTitolo(rs.getString("titolo"));
-                // In futuro: mappatura degli altri campi qui...
+                // In futuro: mappatura degli altri campi qui (ricordati di aggiungerli anche nella query!)
                 lista.add(t);
             }
         } catch (SQLException e) {
-            System.err.println("Errore durante il recupero delle tesi: " + e.getMessage());
+            // Sostituito System.err con il log strutturato
+            LOGGER.log(Level.SEVERE, "Errore durante il recupero delle tesi", e);
         }
         return lista;
     }
@@ -45,7 +54,7 @@ public class TesiDAOPostgresImpl implements TesiDAO {
             return affectedRows > 0; // Ritorna true solo se l'inserimento ha avuto successo
 
         } catch (SQLException e) {
-            System.err.println("Errore durante il salvataggio della tesi: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Errore durante il salvataggio della tesi", e);
             return false;
         }
     }
@@ -73,7 +82,7 @@ public class TesiDAOPostgresImpl implements TesiDAO {
             return affectedRows > 0; // Ritorna true se l'inserimento è andato a buon fine
 
         } catch (SQLException e) {
-            System.err.println("Errore durante l'inserimento della tesi: " + e.getMessage());
+            LOGGER.log(Level.SEVERE, "Errore durante l'inserimento della tesi", e);
             return false;
         }
     }
