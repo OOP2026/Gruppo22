@@ -38,12 +38,12 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
 
                 Time sqlOraInizio = rs.getTime("ora_inizio");
                 if (sqlOraInizio != null) {
-                    s.setOra_inizio(sqlOraInizio.toLocalTime());
+                    s.setOraInizio(sqlOraInizio.toLocalTime());
                 }
 
                 Time sqlOraFine = rs.getTime("ora_fine");
                 if (sqlOraFine != null) {
-                    s.setOra_fine(sqlOraFine.toLocalTime());
+                    s.setOraFine(sqlOraFine.toLocalTime());
                 }
 
                 s.setLuogo(rs.getString("luogo"));
@@ -85,15 +85,15 @@ public class SedutaDAOPostgresImpl implements SedutaDAO {
             }
 
             // ora_inizio (java.time.LocalTime) -> java.sql.Time
-            if (seduta.getOra_inizio() != null) {
-                pstmt.setTime(2, Time.valueOf(seduta.getOra_inizio()));
+            if (seduta.getOraInizio() != null) {
+                pstmt.setTime(2, Time.valueOf(seduta.getOraInizio()));
             } else {
                 pstmt.setNull(2, Types.TIME);
             }
 
             // ora_fine (java.time.LocalTime) -> java.sql.Time
-            if (seduta.getOra_fine() != null) {
-                pstmt.setTime(3, Time.valueOf(seduta.getOra_fine()));
+            if (seduta.getOraFine() != null) {
+                pstmt.setTime(3, Time.valueOf(seduta.getOraFine()));
             } else {
                 pstmt.setNull(3, Types.TIME);
             }
