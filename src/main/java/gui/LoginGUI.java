@@ -1,8 +1,7 @@
 package gui;
 
-import Controller.Controller;
+import controller.Controller;
 import model.Studente;
-
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.awt.*;
  */
 public class LoginGUI extends JFrame {
 
-    private final Controller controller;
+    private final Controller Controller;
 
     // Componenti grafici
     private JTextField txtUsername;
@@ -22,7 +21,7 @@ public class LoginGUI extends JFrame {
 
     public LoginGUI(Controller controller) {
         super("Sistema Universitario - Login");
-        this.controller = controller;
+        this.Controller = controller;
         initComponents();
     }
 
@@ -71,7 +70,7 @@ public class LoginGUI extends JFrame {
         }
 
         // Chiamo il controller per ottenere l'oggetto STUDENTE (null = credenziali non valide)
-        Studente studenteLoggato = controller.loginStudente(username, password);
+        Studente studenteLoggato = Controller.loginStudente(username, password);
 
         if (studenteLoggato != null) {
             JOptionPane.showMessageDialog(this, "Login effettuato con successo!");
@@ -79,7 +78,7 @@ public class LoginGUI extends JFrame {
 
             // Apro la dashboard: qui passo controller e studente (adatta se la tua DashboardCompletaGUI ha un costruttore diverso)
             SwingUtilities.invokeLater(() -> {
-                DashboardCompletaGUI dashboard = new DashboardCompletaGUI(controller,studenteLoggato);
+                DashboardCompletaGUI dashboard = new DashboardCompletaGUI(Controller,studenteLoggato);
                 dashboard.setVisible(true);
             });
 
