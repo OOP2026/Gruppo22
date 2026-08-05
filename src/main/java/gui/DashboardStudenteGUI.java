@@ -2,8 +2,8 @@ package gui;
 
 import controller.Controller;
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+// Rimossi gli import inutilizzati di ActionEvent e ActionListener
 
 /**
  * Interfaccia grafica per lo studente.
@@ -11,10 +11,10 @@ import java.awt.event.ActionListener;
  */
 public class DashboardStudenteGUI extends JFrame {
 
-    private Controller controller;
+    // Bonus Architetturale: Aggiunto 'transient' per prevenire l'errore di serializzazione
+    private transient Controller controller;
     private String matricolaStudente;
 
-    // --- LA MODIFICA È QUI ---
     // Il parametro è stato rinominato in 'controller' (tutto minuscolo)
     public DashboardStudenteGUI(Controller controller, String matricolaStudente) {
 
@@ -32,17 +32,17 @@ public class DashboardStudenteGUI extends JFrame {
         // Esempio di un bottone per una tesi specifica (da rendere dinamico in futuro)
         JButton btnRichiedi = new JButton("Richiedi Tesi (ID: 101)");
 
-        btnRichiedi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Chiamata al Controller secondo il modello BCE
-                boolean successo = controller.registraTesi(101, matricolaStudente);
+        // --- LA MODIFICA È QUI ---
+        // Sostituita la classe anonima verbosa con una Lambda Expression
+        btnRichiedi.addActionListener(e -> {
+            // Chiamata al Controller secondo il modello BCE
+            boolean successo = this.controller.registraTesi(101, this.matricolaStudente);
 
-                if (successo) {
-                    JOptionPane.showMessageDialog(null, "Richiesta inviata con successo!");
-                } else {
-                    JOptionPane.showMessageDialog(null, "Errore nell'invio della richiesta.");
-                }
+            // Sostituito 'null' con 'this' per ancorare il popup alla finestra principale
+            if (successo) {
+                JOptionPane.showMessageDialog(this, "Richiesta inviata con successo!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Errore nell'invio della richiesta.");
             }
         });
 
