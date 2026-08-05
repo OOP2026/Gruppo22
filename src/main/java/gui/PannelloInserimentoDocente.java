@@ -6,13 +6,16 @@ import java.awt.*;
 
 public class PannelloInserimentoDocente extends JPanel {
 
-    // --- LA MODIFICA È QUI ---
     // Aggiunta la keyword 'transient' per escludere il Controller dalla serializzazione
     // e rinominata la variabile in minuscolo ('controller') per rispettare il Clean Code.
     private transient Controller controller;
 
-    // Dichiarazione dei soli 3 campi previsti dal database
-    private JTextField txtIdDocente, txtNome, txtCognome;
+    // --- LA MODIFICA È QUI ---
+    // Dichiarazione dei componenti grafici: una variabile per riga per rispettare gli standard Java
+    private JTextField txtIdDocente;
+    private JTextField txtNome;
+    private JTextField txtCognome;
+
     private JButton btnSalva;
 
     public PannelloInserimentoDocente(Controller controller) {
