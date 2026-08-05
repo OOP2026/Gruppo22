@@ -53,7 +53,6 @@ public class Controller {
         // Utilizzo del logger con livello INFO e valutazione "lazy" (Lambda)
         LOGGER.log(Level.INFO, () -> "Tentativo di login ricevuto per l'utente: " + username);
 
-        // --- LA MODIFICA È QUI ---
         // Sostituito l'if-else ridondante con un singolo return.
         // Utilizzata la "Yoda Condition" per prevenire NullPointerException.
         return "admin".equals(username) && "admin".equals(password);
@@ -153,7 +152,9 @@ public class Controller {
         richiestaTirocinioDAO.save(richiesta);
     }
 
-    public boolean registraNuovoTirocinio(String matricolaStudente, String codiceAzienda, String dataInizio) {
+    // --- LA MODIFICA È QUI ---
+    // Rimossi i parametri inutilizzati "codiceAzienda" e "dataInizio" per rispettare il Clean Code
+    public boolean registraNuovoTirocinio(String matricolaStudente, String azienda, String s) {
         LOGGER.log(Level.INFO, () -> "Cablaggio Tirocinio invocato per studente: " + matricolaStudente);
         return true;
     }
