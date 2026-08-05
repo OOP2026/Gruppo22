@@ -12,14 +12,15 @@ import java.awt.*;
  */
 public class LoginGUI extends JFrame {
 
-    // --- LA MODIFICA È QUI ---
     // Aggiunto il modificatore 'transient' e rinominata la variabile in 'controller'
     private final transient Controller controller;
 
-    // Componenti grafici
+    // Componenti grafici (manteniamo solo quelli che servono in più metodi)
     private JTextField txtUsername;
     private JPasswordField txtPassword;
-    private JButton btnLogin;
+
+    // --- LA MODIFICA È QUI ---
+    // Rimosso 'private JButton btnLogin;' dallo scope della classe
 
     public LoginGUI(Controller controller) {
         super("Sistema Universitario - Login");
@@ -42,7 +43,9 @@ public class LoginGUI extends JFrame {
         JLabel lblPassword = new JLabel("Password:");
         txtPassword = new JPasswordField();
 
-        btnLogin = new JButton("Accedi");
+        // --- LA MODIFICA È QUI ---
+        // btnLogin è ora dichiarato strettamente come variabile locale
+        JButton btnLogin = new JButton("Accedi");
 
         mainPanel.add(lblUsername);
         mainPanel.add(txtUsername);
