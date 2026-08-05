@@ -11,13 +11,21 @@ import implementazionedao.TesiDAOPostgresImpl;
 import implementazionedao.StudenteDAOPostgresImpl;
 import implementazionedao.DocenteDAOPostgresImpl;
 import implementazionedao.SedutaDAOPostgresImpl;
+
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
+// 1. Importazioni per il logging
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller {
+
+    // 2. Inizializzazione del Logger standard di Java (Statico e Finale)
+    private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
 
     // Dichiarazione delle dipendenze (I DAO)
     private RichiestaTirocinioDAO richiestaTirocinioDAO;
@@ -43,7 +51,10 @@ public class Controller {
     // ========================================================================
 
     public boolean login(String username, String password) {
-        System.out.println("Tentativo di login ricevuto per l'utente: " + username);
+        // --- LA MODIFICA È QUI ---
+        // Utilizzo del logger con livello INFO e valutazione "lazy" (Lambda)
+        LOGGER.log(Level.INFO, () -> "Tentativo di login ricevuto per l'utente: " + username);
+
         if (username.equals("admin") && password.equals("admin")) {
             return true;
         }
@@ -59,7 +70,8 @@ public class Controller {
     // ========================================================================
 
     public Studente cercaStudente(String matricola) {
-        System.out.println("CONTROLLER: Sto cercando la matricola [" + matricola + "]");
+        // Sostituzione di System.out con LOGGER
+        LOGGER.log(Level.INFO, () -> "CONTROLLER: Sto cercando la matricola [" + matricola + "]");
         return studenteDAO.findByMatricola(matricola);
     }
 
@@ -119,16 +131,25 @@ public class Controller {
         model.SedutaDiLaurea nuovaSeduta = new model.SedutaDiLaurea();
 
         try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-            LocalDate dataSeduta = LocalDate.parse(data, formatter);
+            // 1. Parsing della Data (formato atteso: dd-MM-yyyy)
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+            LocalDate dataSeduta = LocalDate.parse(data, dateFormatter);
             nuovaSeduta.setData(dataSeduta);
 
+            // 2. Parsing dell'Ora (formato atteso: HH:mm, es. 09:30)
+            DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+            LocalTime oraSeduta = LocalTime.parse(ora, timeFormatter);
+
+            // --- LA MODIFICA È QUI ---
+            // Sostituito il vecchio setOra() con il nuovo metodo e il dato tipizzato
+            nuovaSeduta.setOraInizio(oraSeduta);
+
         } catch (DateTimeParseException e) {
-            System.err.println("Errore di parsing: la data deve rispettare il formato dd-MM-yyyy");
+            // Il Logger intercetta sia errori sulla data che sull'ora
+            LOGGER.log(Level.SEVERE, "Errore di parsing: formato data (dd-MM-yyyy) o ora (HH:mm) non valido", e);
             return false;
         }
 
-        nuovaSeduta.setOra(ora);
         nuovaSeduta.setAula(aula);
 
         return sedutaDAO.inserisciSeduta(nuovaSeduta);
@@ -139,7 +160,8 @@ public class Controller {
     }
 
     public boolean registraNuovoTirocinio(String matricolaStudente, String codiceAzienda, String dataInizio) {
-        System.out.println("Cablaggio Tirocinio invocato per studente: " + matricolaStudente);
+        // Sostituzione di System.out con LOGGER
+        LOGGER.log(Level.INFO, () -> "Cablaggio Tirocinio invocato per studente: " + matricolaStudente);
         return true;
     }
 
