@@ -5,12 +5,9 @@ import model.Studente;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class DashboardCompletaGUI extends JFrame {
 
-   
     private transient Controller controller;
 
     public DashboardCompletaGUI(Controller controller, Studente studenteLoggato) {
@@ -20,11 +17,10 @@ public class DashboardCompletaGUI extends JFrame {
         setTitle("Pannello di Controllo Generale - Sistema Tesi");
         setSize(800, 600); // Finestra capiente per la griglia
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
         setLocationRelativeTo(null); // Centra lo schermo all'avvio
         setLayout(new BorderLayout());
 
-        // Header superiore di benvenuto (mostra anche il nome dello studente se disponibile)
+        // Header superiore di benvenuto
         String headerText = "Pannello Amministrazione - Inserimento Dati";
         if (studenteLoggato != null && studenteLoggato.getNome() != null) {
             headerText = "Benvenuto " + studenteLoggato.getNome() + " - " + headerText;
@@ -71,111 +67,69 @@ public class DashboardCompletaGUI extends JFrame {
         // --- 5. GESTIONE DEI CLICK E INTERAZIONE CON I FORM ---
 
         // Interazione DOCENTE
-        btnDocente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Docente", true);
-                dialog.setSize(450, 400);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                // Agganciamo il pannello grafico del docente passando l'istanza controller
-                dialog.add(new PannelloInserimentoDocente(controller));
-
-                dialog.setVisible(true);
-            }
+        btnDocente.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Docente", true);
+            dialog.setSize(450, 400);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoDocente(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione TESI
-        btnTesi.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tesi", true);
-                dialog.setSize(450, 400);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                // Agganciamo il pannello grafico della tesi
-                dialog.add(new PannelloInserimentoTesi(controller));
-
-                dialog.setVisible(true);
-            }
+        btnTesi.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tesi", true);
+            dialog.setSize(450, 400);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoTesi(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione STUDENTE
-        btnStudente.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Studente", true);
-                dialog.setSize(450, 450);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                dialog.add(new PannelloInserimentoStudente(controller));
-
-                dialog.setVisible(true);
-            }
+        btnStudente.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Studente", true);
+            dialog.setSize(450, 450);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoStudente(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione COORDINATORE
-        btnCoordinatore.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Coordinatore", true);
-                dialog.setSize(450, 450);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                dialog.add(new PannelloInserimentoCoordinatore(controller));
-
-                dialog.setVisible(true);
-            }
+        btnCoordinatore.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Coordinatore", true);
+            dialog.setSize(450, 450);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoCoordinatore(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione TIROCINIO
-        btnTirocinio.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tirocinio", true);
-                dialog.setSize(450, 450);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                dialog.add(new PannelloTirocinio(controller));
-
-                dialog.setVisible(true);
-            }
+        btnTirocinio.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tirocinio", true);
+            dialog.setSize(450, 450);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloTirocinio(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione SEDUTA LAUREA
-        btnSedutaLaurea.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Seduta di Laurea", true);
-                dialog.setSize(450, 450);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                dialog.add(new PannelloInserimentoSedutaLaurea(controller));
-
-                dialog.setVisible(true);
-            }
+        btnSedutaLaurea.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Seduta di Laurea", true);
+            dialog.setSize(450, 450);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoSedutaLaurea(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione TIPO
-        btnTipo.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tipo", true);
-                dialog.setSize(450, 450);
-                dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
-
-                dialog.add(new PannelloInserimentoTipo(controller));
-
-                dialog.setVisible(true);
-            }
+        btnTipo.addActionListener(e -> {
+            JDialog dialog = new JDialog(DashboardCompletaGUI.this, "Registrazione Tipo", true);
+            dialog.setSize(450, 450);
+            dialog.setLocationRelativeTo(DashboardCompletaGUI.this);
+            dialog.add(new PannelloInserimentoTipo(controller));
+            dialog.setVisible(true);
         });
 
         // Interazione LOGOUT
-        btnLogout.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose(); // Distrugge la dashboard attuale
-            }
-        });
+        btnLogout.addActionListener(e -> dispose()); // Lambda a singola espressione
     }
 }
